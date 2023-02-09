@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  const Bankinfo = sequelize.define("bankinfo", {
+  const BankInfo = sequelize.define("bankinfo", {
     ID: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -93,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  const Kycinfo = sequelize.define("kycinfo", {
+  const KycInfo = sequelize.define("kycinfo", {
     ID: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -128,5 +128,5 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  return { BasicInfo, Bankinfo, Kycinfo };
+  return { BasicInfo, BankInfo, KycInfo };
 };

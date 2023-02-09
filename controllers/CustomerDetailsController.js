@@ -1,10 +1,10 @@
 // Importing the schemas
-const CustomerDetailsSchema = require("../models/CustomerDetailsSchema");
+const CustomerDetailsSchema = require("../models/");
 
 // Assigning the schemas to different names
-const BasicInfo = CustomerDetailsSchema.BasicInfo;
-const BankInfo = CustomerDetailsSchema.BankInfo;
-const kycInfo = CustomerDetailsSchema.kycinfo;
+const BasicInfo = CustomerDetailsSchema.customerDetails.BasicInfo;
+const BankInfo = CustomerDetailsSchema.customerDetails.BankInfo;
+const KycInfo = CustomerDetailsSchema.customerDetails.KycInfo;
 
 // Firing the routes to create entries
 
@@ -73,7 +73,7 @@ var CustomerDetails = {
     };
 
     // Creating entries using info json object
-    const result = await kycInfo.create(customerKycInfo);
+    const result = await KycInfo.create(customerKycInfo);
 
     // Catching result and error message
     if (result) {

@@ -8,17 +8,17 @@ const asyncMiddleware = require("../middleWare/asyncMiddleware");
 
 // Using routers
 router.post(
-  "/BasicInfo",
+  "/basicinfo",
   celebrate({ body: CustomerDetailsValidator.insertBasicInfo_POST_Schema }),
   asyncMiddleware(CustomerDetails.BasicInfo)
 );
 router.post(
-  "/BankInfo",
+  "/bankinfo",
   celebrate({ body: CustomerDetailsValidator.insertBankInfo_POST_Schema }),
   asyncMiddleware(CustomerDetails.BankInfo)
 );
 router.post(
-  "/KycDocuments",
+  "/kycinfo",
   celebrate({ body: CustomerDetailsValidator.insertKycInfo_POST_Schema }),
   asyncMiddleware(CustomerDetails.KycInfo)
 );

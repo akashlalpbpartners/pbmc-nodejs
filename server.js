@@ -16,7 +16,7 @@ const userToken = require("./api/tokenRouter");
 
 // Routers connections
 app.use("/otp", otp);
-app.use("/CustomerDetails", CustomerDetails);
+app.use("/details", CustomerDetails);
 app.use("/api", userToken);
 
 app.listen(PORT, () => {
