@@ -9,6 +9,18 @@ const KycInfo = CustomerDetailsSchema.customerDetails.KycInfo;
 // Firing the routes to create entries
 
 var CustomerDetails = {
+  ReadBasicInfo: async function (req, res, next) {
+    // Creating entries using info json object
+
+    const users = await BasicInfo.findAll({
+      attributes: ["ID", "Username", "MobileNumber", "EmailId"],
+    });
+    if (users) {
+      res.status(200).json(users);
+    } else {
+      res.status(400).send("Internal server error!");
+    }
+  },
   BasicInfo: async function (req, res, next) {
     // Making json object to push the data for basic info
     let customerBasicInfo = {
@@ -40,6 +52,7 @@ var CustomerDetails = {
   BankInfo: async function (req, res, next) {
     // Making json object to push the data for bank info
     let customerBankInfo = {
+      CustomerID: req.body.CustomerID,
       BankName: req.body.BankName,
       AccountHolderName: req.body.AccountHolderName,
       AccountNumber: req.body.AccountNumber,
@@ -63,6 +76,7 @@ var CustomerDetails = {
   KycInfo: async function (req, res, next) {
     // Making json object to push the data for kyc info
     let customerKycInfo = {
+      CustomerID: req.body.CustomerID,
       PanCard: req.body.PanCard,
       CancelCheque: req.body.CancelCheque,
       AddressProof: req.body.AddressProof,

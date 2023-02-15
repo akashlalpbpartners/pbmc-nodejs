@@ -11,13 +11,14 @@ const CustomerDetailsValidator = {
       Joi.string().regex(/^[0-3]{0,1}[0-9]{1}\/[0-1]{0,1}[0-9]{1}\/[0-9]{4}$/),
     ]),
     Address: Joi.string().required(),
-    Pincode: Joi.number().required(),
+    Pincode: Joi.string().required(),
     State: Joi.string().required(),
     City: Joi.string().required(),
     GSTNumber: Joi.number().required().allow(0, 1, "0", "1"),
     MSMENumber: Joi.number().required().allow(0, 1, "0", "1"),
   }),
   insertBankInfo_POST_Schema: Joi.object().keys({
+    CustomerID: Joi.number().required(),
     BankName: Joi.string().required(),
     AccountHolderName: Joi.string().required(),
     AccountNumber: Joi.string().required(),
@@ -28,6 +29,7 @@ const CustomerDetailsValidator = {
     BranchAddress: Joi.string().required(),
   }),
   insertKycInfo_POST_Schema: Joi.object().keys({
+    CustomerID: Joi.number().required(),
     PanCard: Joi.string().required(),
     CancelCheque: Joi.string().required(),
     AddressProof: Joi.string().required(),

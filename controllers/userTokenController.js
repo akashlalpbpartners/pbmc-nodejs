@@ -10,15 +10,16 @@ const Token = db.userToken;
 
 // 1. create product
 
-const register = async (req, res) => {
+const Register = async (req, res) => {
   let jwtToken = jwt.sign({ email: req.body.email }, JWT_SECRET_KEY);
   let info = {
-    email: req.body.email,
-    otp: req.body.otp,
-    token: jwtToken,
-    isactive: 1,
-    createdOn: Date(),
-    updatedOn: Date(),
+    CustomerID: req.body.CustomerID,
+    MobileNumber: req.body.MobileNumber,
+    Otp: req.body.Otp,
+    Token: jwtToken,
+    IsActive: 1,
+    CreatedOn: Date(),
+    UpdatedOn: Date(),
   };
   try {
     const token = await Token.create(info);
@@ -30,17 +31,16 @@ const register = async (req, res) => {
 
 // 2. Logout user
 
-const update = async (req, res) => {
+const Logout = async (req, res) => {
   let id = req.params.id;
-  const product = await Token.update(
+  const logout = await Token.update(
     { isactive: 0, updatedOn: Date() },
     { where: { id: id } }
   );
-
-  res.status(200).send(product);
+  res.status(200).send(logout);
 };
 
 module.exports = {
-  register,
-  update,
+  Register,
+  Logout,
 };

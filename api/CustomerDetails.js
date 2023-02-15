@@ -7,6 +7,10 @@ const CustomerDetailsValidator = require("../validations/CutomerDetails");
 const asyncMiddleware = require("../middleWare/asyncMiddleware");
 
 // Using routers
+router.post("/readall",
+  // celebrate({ body: CustomerDetailsValidator.insertBasicInfo_POST_Schema }),
+  asyncMiddleware(CustomerDetails.ReadBasicInfo)
+);
 router.post(
   "/basicinfo",
   celebrate({ body: CustomerDetailsValidator.insertBasicInfo_POST_Schema }),

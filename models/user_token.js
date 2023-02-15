@@ -7,26 +7,30 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      otp: {
+      CustomerID: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      token: {
+      MobileNumber: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+      },
+      Otp: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      Token: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      isactive: {
+      IsActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-      createdOn: {
+      CreatedOn: {
         type: DataTypes.DATE(),
       },
-      updatedOn: {
+      UpdatedOn: {
         type: DataTypes.DATE(),
       },
     },
