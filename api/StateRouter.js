@@ -8,4 +8,5 @@ router.post("/readstates", StateController.ReadallStates);
 
 router.get("/readcity/:id", StateController.ReadallCity);
 
+
 module.exports = router;

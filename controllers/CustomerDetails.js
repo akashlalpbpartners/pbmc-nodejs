@@ -90,7 +90,7 @@ const CustomerDetails = {
 
     // Catching result and error message
     if (result) {
-      res.status(200).json(result);
+      res.status(200).send({"msg":"Record Inserted Successfully"});
     } else {
       res.status(400).send("Internal server error!");
     }
@@ -125,6 +125,7 @@ const CustomerDetails = {
       });
   },
   BankInfo: async function (req, res, next) {
+    console.log(req.body)
     let customerBankInfo = {
       CustomerID: req.body.CustomerID,
       BankName: req.body.BankName,
@@ -148,9 +149,9 @@ const CustomerDetails = {
     );
     if (isExist === true) {
       //Insert into table bankinfo
-      await BankInfo.create(customerBankInfo).then(function (result) {
+      BankInfo.create(customerBankInfo).then(function (result) {
         if (result) {
-          res.status(200).json({ msg: res });
+          res.status(200).send( {"msg":"Record Inserted successfully"});
         } else {
           res.status(400).send("Error in insert new record");
         }
@@ -195,7 +196,7 @@ const CustomerDetails = {
           // Print data
           .then((response) => {
             if (response) {
-              res.status(200).send({ msg: "saved successfully" });
+              res.status(200).send({ msg: "Saved successfully" });
             } else {
               res.status(400).send("Error to fetch data\n" + error);
             }
