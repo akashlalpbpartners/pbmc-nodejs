@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const PORT = process.env.PORT;
 const app = express();
+const tokenAuthentication = require("./middleWare/tokenAuthentication")
 
 // Middleware
 app.use(express.json());
@@ -19,7 +20,8 @@ const EmploymentTypes =require("./api/EmploymentTypes");
 
 // Routers connections
 app.use("/otp", otp);
-app.use("/details", customerDetails);
+app.use("/details",  tokenAuthentication,
+customerDetails);
 app.use("/api", userToken);
 app.use("/geo", states);
 app.use("/product", products);

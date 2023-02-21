@@ -1,7 +1,7 @@
 const { Joi } = require("celebrate");
 const CustomerDetailsValidator = {
   insertBasicInfo_POST_Schema: Joi.object().keys({
-    ID: Joi.alternatives([Joi.allow(null), Joi.number()]),
+    CustomerID: Joi.alternatives([Joi.allow(null), Joi.number()]),
     Username: Joi.string().required(),
     FatherName: Joi.string().required(),
     MobileNumber: Joi.string().required(),
