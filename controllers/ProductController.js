@@ -87,8 +87,13 @@ const InsertFinancialService = async (req, res) => {
 const Dashboard = async (req, res) => {
   try {
     const finCode = req.body.FINCode;
-    const startDate = new Date("2022-04-01 00:00:00");
-    const endDate = new Date("2023-04-01 00:00:00");
+    const currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+    if(currentMonth<=3)
+      currentYear=currentYear-1;
+    const startDate = new Date(`${currentYear}-04-01 00:00:00`);
+    const endDate = new Date(`${currentYear+1}-04-01 00:00:00`);
     FinancialService.findAll({
       attributes: [
         [literal("COUNT(*)"), "TotalRecords"],
@@ -98,9 +103,9 @@ const Dashboard = async (req, res) => {
       where: {
         FINCode: finCode,
         createdAt: {
-                [Op.gte]: startDate,
-                [Op.lt]: endDate,
-              },
+          [Op.gte]: startDate,
+          [Op.lt]: endDate,
+        },
       },
       group: ["Year", "Month"],
     })
@@ -134,8 +139,13 @@ const Dashboard = async (req, res) => {
 };
 const DashboardAll = async (req, res) => {
   try {
-    const startDate = new Date("2022-04-01 00:00:00");
-    const endDate = new Date("2023-04-01 00:00:00");
+    const currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+    if(currentMonth<=3)
+      currentYear=currentYear-1;
+    const startDate = new Date(`${currentYear}-04-01 00:00:00`);
+    const endDate = new Date(`${currentYear+1}-04-01 00:00:00`);
     FinancialService.findAll({
       attributes: [
         [literal("COUNT(*)"), "TotalRecords"],
@@ -144,9 +154,9 @@ const DashboardAll = async (req, res) => {
       ],
       where: {
         createdAt: {
-                [Op.gte]: startDate,
-                [Op.lt]: endDate,
-              },
+          [Op.gte]: startDate,
+          [Op.lt]: endDate,
+        },
       },
       group: ["Year", "Month"],
     })
@@ -156,7 +166,7 @@ const DashboardAll = async (req, res) => {
       .catch((error) => {
         console.error(error);
       });
-    
+
     res.status(400);
   } catch (error) {
     throw error;
@@ -170,5 +180,5 @@ module.exports = {
   InsertFinancialService,
   ReadFinancialServiceFincode,
   Dashboard,
-  DashboardAll
+  DashboardAll,
 };
